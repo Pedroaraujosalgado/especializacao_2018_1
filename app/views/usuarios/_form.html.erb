@@ -1,0 +1,25 @@
+<%= form_for @usuario, url: if @usuario.persisted? then :edit_usuario else :new_usuario end do |form| %>
+    <%= form.label "nome" %>
+    <%= form.text_field :nome %>
+<br>
+
+ <%= form.label "Sobrenome" %>
+    <%= form.text_field :sobrenome %>
+<br>
+
+ <%= form.label "Email" %>
+    <%= form.text_field :email %>
+<br>
+
+ <%= form.label "Telefone" %>
+    <%= form.text_field :telefone %>
+<br>
+
+ <%= form.label "Data de Nascimento" %>
+    <%= form.text_field :data_nascimento %>
+<br>
+
+<%= form.submit "Cadastrar" %>
+<% end %>
+
+
