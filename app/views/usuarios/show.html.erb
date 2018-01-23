@@ -10,4 +10,7 @@
     <br>
     <p> Data de Nacismento: </p><%= @usuario.data_nascimento %> </p>
     <br>
-    
+
+    <%= link_to "Todos os usuarios", index_usuarios_path %>
+    <%= link_to "Editar", edit_usuario_path(id: @usuario.id) %>
+    <%= link_to "Excluir", destroy_usuario_path(id: @usuario.id), method: :delete %>
