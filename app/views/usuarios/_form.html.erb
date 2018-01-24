@@ -1,5 +1,13 @@
 <%= form_for @usuario, url: if @usuario.persisted? then :edit_usuario else :new_usuario end do |form| %>
 
+    <% if @usuario.errors.any? && @usuario.errors[:avatar] %>
+      <%=form.label "Foto de perfil #{@usuario.errors[:avatar].first}" %>
+      <% else %>
+      <%= form.label "Foto de perfil" %>
+    <% end %>
+    <%= form.file_field :avatar %>
+    <br>
+
     <% if @usuario.errors.any? && @usuario.errors[:nome] %>
       <%=form.label "Nome #{@usuario.errors[:nome].first}" %>
       <% else %>
