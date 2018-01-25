@@ -5,6 +5,8 @@ class Usuario < ApplicationRecord
 
   #apaga todos os posts quando o Usuario e apaga ou eh apagado.
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  belongs_to :cidades, optional: true
 
   validates_presence_of :avatar
   validates :nome, presence: true, length: {in: 2..20}
@@ -34,6 +36,6 @@ class Usuario < ApplicationRecord
          errors.add(:avatar, "Muito grande, não pode possuir mais de 5 MB.")
       end
     end
-  
+
 
 end

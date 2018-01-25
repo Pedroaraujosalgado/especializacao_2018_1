@@ -4,15 +4,13 @@
     <title>MyApp</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <% if logged_in? %>
     <p>
       <%= link_to current_user.nome,show_usuario_path(id: current_user.id) %>
-      <%= link_to "Feed", feed_path %>      
+      <%= link_to "Feed", feed_path %>
       <%= link_to "Logout", logout_path, method: :delete %>
     </p>
     <% else %>
@@ -20,5 +18,9 @@
     <% end %>
     <%= render "layouts/avisos" %>
     <%= yield %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
   </body>
 </html>

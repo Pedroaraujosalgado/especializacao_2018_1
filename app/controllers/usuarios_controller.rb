@@ -1,9 +1,26 @@
 class UsuariosController < ApplicationController
   before_action :set_usuario, only: [:show, :edit, :update, :destroy]
-  before_action :usuario_nao_logado, except: [:new, :create]
+  before_action :usuario_nao_logado, except: [:new, :create, :buscacidades]
   before_action :usuario_logado, only: [:new, :create]
   before_action :usuario_correto, only: [:edit, :update]
   before_action :usuario_correto_ou_admin, only: [:destroy]
+
+  #Patch buscacidades
+  def buscacidades
+    estado = Estado.find_by(id: params[:estado])
+    cidades = estado.cidades if estado
+
+    @result = []
+    if cidades
+      cidades.each do |cidade|
+        @result.append cidade
+      end
+    end
+    
+    respond_to do |format|
+      format.json { render json: @result}
+    end
+  end
 
   # GET usuarios/novo
   def new
@@ -65,7 +82,7 @@ class UsuariosController < ApplicationController
   # boa pratica de segurança
   def usuario_params
     params.require(:usuario).permit(:nome, :sobrenome, :email, :data_nascimento,
-       :telefone, :password, :password_confirmation, :avatar)
+       :telefone, :password, :password_confirmation, :avatar, :cidade_id)
   end
 
   # este metodo impede que o usuario logado edite outro usuario que nao seja o mesmo

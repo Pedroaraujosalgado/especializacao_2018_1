@@ -10,11 +10,17 @@ module MyApp
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
-    
+
     config.time_zone = 'Brasilia'
     config.active_record.default_timezone = :local
 
     #config.i18n.default_locale = "pt-BR"
+    
+    # Include the authenticity token in remote forms.
+   config.action_view.embed_authenticity_token_in_remote_forms = true
+
+
+
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

@@ -1,13 +1,22 @@
 Rails.application.routes.draw do
-  resources :comentarios
-  resources :posts
-  get 'sessoes/new'
+
+
+  #redefinir_senha controller
+  get 'redefinir_senha/busca', to: "redefinir_senha#busca", as: :redefinir_senha
+  post 'redefinir_senha/busca', to: "redefinir_senha#recuperar"
 
   root to: "usuarios#index"
 
+  #comentarios controller
+  resources :comentarios
+
+
+
   #posts PostsController
+  patch 'curtir/:post_id', to: "posts#curtir", as: :curtir
+  patch 'descurtir/:post_id', to: "posts#descurtir", as: :descurtir
   get 'feed', to: "posts#feed", as: :feed
-  resources :post
+  resources :posts
 
   #sessoes controller
   get 'login', to: "sessoes#new", as: :Login
@@ -15,6 +24,7 @@ Rails.application.routes.draw do
   delete 'logout', to: "sessoes#destroy", as: :logout
 
   #usuarios controller
+  patch 'buscacidades', to: "usuarios#buscacidades", as: :buscacidades
   get 'usuarios/novo', to: "usuarios#new", as: :new_usuario
   post 'usuarios/novo', to: "usuarios#create"
   get 'usuarios/edit/:id', to:"usuarios#edit", as: :edit_usuario
